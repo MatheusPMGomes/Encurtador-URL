@@ -2,6 +2,10 @@ var express = require("express");
 var router = express.Router();
 const Link = require("../models/link");
 
+const path = require("path");
+
+app.use("/static", express.static(path.join(__dirname + "/public")));
+
 router.get("/:code/stats", async (req, res, next) => {
   const code = req.params.code;
   const resultado = await Link.findOne({ where: { code } });
